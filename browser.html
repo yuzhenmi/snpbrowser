@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="lib/raphael.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/black-tie/jquery-ui.min.css">
+
+    <script type="text/javascript" src="src/alignment.js"></script>
+    <script type="text/javascript" src="src/assets.js"></script>
+    <script type="text/javascript" src="src/fileloader.js"></script>
+    <script type="text/javascript" src="src/legends.js"></script>
+    <script type="text/javascript" src="src/menu.js"></script>
+    <script type="text/javascript" src="src/misc.js"></script>
+    <script type="text/javascript" src="src/node.js"></script>
+    <script type="text/javascript" src="src/parser.js"></script>
+    <script type="text/javascript" src="src/point.js"></script>
+    <script type="text/javascript" src="src/snp.js"></script>
+    <script type="text/javascript" src="src/sort.js"></script>
+    <script type="text/javascript" src="src/settings.js"></script>
+    <script type="text/javascript" src="src/isolate.js"></script>
+    <script type="text/javascript" src="src/isolatelist.js"></script>
+    <script type="text/javascript" src="src/tree.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        #menu {
+            width: 100%;
+            overflow: auto;
+            box-sizing:border-box;
+            border: 1px solid black;
+        }
+
+        #tree {
+            width: 85%;
+            height: 500px;
+            overflow: auto;
+            float: left;
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+
+        #isolatelist {
+            width: 15%;
+            height: 500px;
+            overflow: auto;
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+
+        #alignment {
+            width: 100%;
+            height: 200px;
+            overflow: auto;
+            clear:both;
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+
+        #options {
+            width: 100%;
+            overflow: auto;
+            box-sizing:border-box;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div id="menu"></div>
+<div id="tree"></div>
+<div id="isolatelist"></div>
+<div id="alignment"></div>
+<div id="settings"></div>
+<div id="legends"></div>
+<script>
+    $(function() {
+        Misc.init();
+        var assets = new Assets();
+        assets.menu = new Menu("menu", assets);
+        assets.tree = new Tree("tree", assets);
+        assets.isolateList = new IsolateList("isolatelist", assets);
+        assets.alignment = new Alignment("alignment", assets);
+        assets.settings = new Settings("settings", assets);
+        assets.legends = new Legends("legends", assets);
+
+        assets.menu.populate();
+        assets.settings.populate();
+        assets.legends.draw(new Array(), new Array());
+    });
+</script>
+</body>
+</html>
